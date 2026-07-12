@@ -1,0 +1,6 @@
+*.beam
+*.ez
+/build
+/playground
+/ugit
+erl_crash.dump
