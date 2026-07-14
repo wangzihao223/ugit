@@ -1,4 +1,5 @@
 import argv
+import gleam/crypto
 import gleam/io
 import gleam/result
 import gleam/string
@@ -10,7 +11,6 @@ import simplifile
 
 pub fn main() -> Nil {
   io.println("Hello from ugit!")
-
   case argv.load().arguments {
     ["init"] -> git_init(".")
     ["init", path] -> git_init(path)
