@@ -37,6 +37,12 @@ int parse_args(int argc, char *argv[], Args *args)
             args->func = cmd_cat_file;
             return 1;
         }
+        if (strcmp(argv[1], "write-tree") == 0)
+        {
+            args->command = "write-tree";
+            args->func = write_tree;
+            return 1;
+        }
     }
     return 0;
 }

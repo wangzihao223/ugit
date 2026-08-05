@@ -16,6 +16,7 @@ typedef struct
 #ifdef _WIN32
 #include <direct.h>
 #define MKDIR(path) _mkdir(path)
+#include <io.h>
 #else
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -31,6 +32,8 @@ typedef struct
 int cmd_init(int argc, char *argv[]);
 int cmd_hash_object(int argc, char *argv[]);
 int cmd_cat_file(int argc, char*argv[]);
+int write_tree(int argc, char *argv[]);
+int write_tree_1(const char *dir);
 int parse_args(int argc, char *argv[], Args *args);
 int cat_file(const char *hash_hex);
 int hash_object_file(const char *path, BYTE hash[20]);
@@ -39,4 +42,5 @@ int put_object(const void *data, size_t size, const char *type, BYTE hash[20]);
 int write_file_chunk(FILE *file, const void *data, size_t size);
 void hash_to_hex(const BYTE *hash, size_t size, char hex[]);
 int ensure_dir(const char *path);
+
 #endif
