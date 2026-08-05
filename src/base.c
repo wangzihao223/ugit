@@ -45,8 +45,7 @@ int write_tree_1(const char *dir)
         snprintf(full_path, sizeof(full_path), "%s\\%s", dir, file.name);
 
         if(file.attrib & _A_SUBDIR){
-            // dir 
-            printf("[DIR] %s\n", full_path);
+            // dir
             if (write_tree_1(full_path) != 0)
             {
                 _findclose(handle);
@@ -54,6 +53,16 @@ int write_tree_1(const char *dir)
             }
         }else{
             //file
+            // hash file
+            BYTE hash[20];
+            char hex[41];
+            if (hash_object_file(full_path, hash) != 0)
+            {
+                _findclose(handle);
+                return 1;
+            }
+            hash_to_hex(hash, 20, hex);
+            printf("hash :%s\n", hex);
             printf("[FILE] %s\n", full_path);
         }
     }while(_findnext64(handle, &file) == 0);
